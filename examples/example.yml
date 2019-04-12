@@ -1,0 +1,36 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sample-cnb-volume-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+
+---
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: sample-cnb-build
+spec:
+  serviceAccountName: sample-service-account
+  source:
+    git:
+      url: https://github.com/buildpack/sample-java-app.git
+      revision: master
+  template:
+    name: buildpacks-cnb
+    arguments:
+    - name: IMAGE
+      value: packs/sample
+    - name: BUILDER_IMAGE
+      value: some/builder
+    - name: CACHE
+      value: sample-app-cache
+  volumes:
+  - name: sample-app-cache
+    persistentVolumeClaim:
+      claimName: sample-cnb-volume-claim
