@@ -1,0 +1,18 @@
+[[buildpacks]]
+id = "org.cloudfoundry.buildpacks.npm"
+uri = "https://github.com/cloudfoundry/npm-cnb/releases/download/v0.0.7/npm-cnb-0.0.7.tgz"
+version = "0.0.7"
+
+[[buildpacks]]
+id = "org.cloudfoundry.buildpacks.nodejs"
+uri = "https://github.com/cloudfoundry/nodejs-cnb/releases/download/v0.0.7/nodejs-cnb-0.0.7.tgz"
+version = "0.0.7"
+
+[[groups]]
+buildpacks = [
+    { id = "org.cloudfoundry.buildpacks.nodejs", version = "0.0.7" },
+    { id = "org.cloudfoundry.buildpacks.npm", version = "0.0.7" },
+]
+
+[stack]
+id = "io.buildpacks.stacks.bionic"
