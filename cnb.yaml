@@ -7,8 +7,6 @@ spec:
   parameters:
   - name: IMAGE
     description: The image you wish to create. For example, "repo/example", or "example.com/repo/image".
-  - name: RUN_IMAGE
-    description: The run image buildpacks will use as the base for IMAGE.
   - name: BUILDER_IMAGE
     description: The builder image (must include v3 lifecycle and compatible buildpacks).
   - name: USE_CRED_HELPERS
@@ -101,7 +99,6 @@ spec:
     - "-layers=/layers"
     - "-helpers=${USE_CRED_HELPERS}"
     - "-app=/workspace"
-    - "-image=${RUN_IMAGE}"
     - "-group=/layers/group.toml"
     - "${IMAGE}"
     imagePullPolicy: Always
