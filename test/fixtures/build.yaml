@@ -1,0 +1,38 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sample-cnb-volume-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+
+---
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: cnb-test-build
+spec:
+  serviceAccountName: service-account
+  source:
+    git:
+      revision: master
+      url: https://github.com/contentful/the-example-app.nodejs.git
+  template:
+    name: buildpacks-cnb
+    arguments:
+    - name: IMAGE
+      value: gcr.io/cncf-buildpacks-ci/test/app
+    - name: USE_CRED_HELPERS
+      value: "false"
+    - name: BUILDER_IMAGE
+      value: gcr.io/cncf-buildpacks-ci/test/builder
+    - name: CACHE
+      value: sample-app-cache
+  volumes:
+  - name: sample-app-cache
+    persistentVolumeClaim:
+      claimName: sample-cnb-volume-claim
