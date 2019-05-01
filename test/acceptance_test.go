@@ -1,6 +1,7 @@
 package test_test
 
 import (
+	"net/http"
 	"os/exec"
 	"reflect"
 	"strings"
@@ -9,6 +10,8 @@ import (
 
 	"github.com/buildpack/imgutil"
 	"github.com/google/go-containerregistry/pkg/authn"
+	"github.com/google/go-containerregistry/pkg/name"
+	"github.com/google/go-containerregistry/pkg/v1/remote"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
@@ -29,8 +32,7 @@ func testAcceptance(t *testing.T, when spec.G, it spec.S) {
 		output, err = cmd.CombinedOutput()
 		println(string(output))
 		AssertNil(t, err)
-		err = image.Delete()
-		AssertNil(t, err)
+		deleteImageTag(t)
 	})
 
 	when("basic lifecycle", func() {
@@ -72,6 +74,17 @@ func testAcceptance(t *testing.T, when spec.G, it spec.S) {
 			time.Sleep(10 * time.Second)
 		})
 	})
+}
+
+func deleteImageTag(t *testing.T) {
+	reference, err := name.ParseReference("gcr.io/cncf-buildpacks-ci/test/app", name.WeakValidation)
+	AssertNil(t, err)
+	registry, err := name.NewRegistry("gcr.io", name.WeakValidation)
+	AssertNil(t, err)
+	authenticator, err := authn.DefaultKeychain.Resolve(registry)
+	AssertNil(t, err)
+	err = remote.Delete(reference, authenticator, http.DefaultTransport)
+	AssertNil(t, err)
 }
 
 func AssertContains(t *testing.T, actual, expected string) {
