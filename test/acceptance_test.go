@@ -32,6 +32,7 @@ func testAcceptance(t *testing.T, when spec.G, it spec.S) {
 		output, err = cmd.CombinedOutput()
 		println(string(output))
 		AssertNil(t, err)
+
 		deleteImageTag(t)
 	})
 

@@ -16,5 +16,3 @@ buildpacks = [
 
 [stack]
 id = "io.buildpacks.stacks.bionic"
-run-image = "gcr.io/cncf-buildpacks-ci/packs/run:0.2.0-build.12"
-build-image = "gcr.io/cncf-buildpacks-ci/packs/build:0.2.0-build.12"
