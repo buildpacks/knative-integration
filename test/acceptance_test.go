@@ -24,14 +24,12 @@ func testAcceptance(t *testing.T, when spec.G, it spec.S) {
 	var image imgutil.Image
 	it.After(func() {
 		cmd := exec.Command("kubectl", "delete", "build", "cnb-test-build")
-		output, err := cmd.CombinedOutput()
+		output, _ := cmd.CombinedOutput()
 		println(string(output))
-		AssertNil(t, err)
 
 		cmd = exec.Command("kubectl", "delete", "buildtemplate", "buildpacks-cnb")
-		output, err = cmd.CombinedOutput()
+		output, _ = cmd.CombinedOutput()
 		println(string(output))
-		AssertNil(t, err)
 
 		deleteImageTag(t)
 	})
