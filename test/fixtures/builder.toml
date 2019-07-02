@@ -5,7 +5,7 @@ version = "0.0.7"
 
 [[buildpacks]]
 id = "org.cloudfoundry.buildpacks.nodejs"
-uri = "https://github.com/cloudfoundry/nodejs-cnb/releases/download/v0.0.7/nodejs-cnb-0.0.7.tgz"
+uri = "https://github.com/cloudfoundry/node-engine-cnb/releases/download/v0.0.7/node-engine-cnb-0.0.7.tgz"
 version = "0.0.7"
 
 [[groups]]
