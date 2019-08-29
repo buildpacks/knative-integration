@@ -8,8 +8,8 @@ id = "org.cloudfoundry.buildpacks.nodejs"
 uri = "https://github.com/cloudfoundry/node-engine-cnb/releases/download/v0.0.7/node-engine-cnb-0.0.7.tgz"
 version = "0.0.7"
 
-[[groups]]
-buildpacks = [
+[[order]]
+group = [
     { id = "org.cloudfoundry.buildpacks.nodejs", version = "0.0.7" },
     { id = "org.cloudfoundry.buildpacks.npm", version = "0.0.7" },
 ]
