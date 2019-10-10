@@ -1,17 +1,17 @@
 [[buildpacks]]
-id = "org.cloudfoundry.buildpacks.npm"
+id = "org.cloudfoundry.npm"
 uri = "https://github.com/cloudfoundry/npm-cnb/releases/download/v0.0.43/npm-cnb-0.0.43.tgz"
 version = "0.0.43"
 
 [[buildpacks]]
-id = "org.cloudfoundry.buildpacks.nodejs"
+id = "org.cloudfoundry.nodejs"
 uri = "https://github.com/cloudfoundry/node-engine-cnb/releases/download/v0.0.69/node-engine-cnb-0.0.69.tgz"
 version = "0.0.69"
 
 [[order]]
 group = [
-    { id = "org.cloudfoundry.buildpacks.nodejs", version = "0.0.69" },
-    { id = "org.cloudfoundry.buildpacks.npm", version = "0.0.43" },
+    { id = "org.cloudfoundry.nodejs", version = "0.0.69" },
+    { id = "org.cloudfoundry.npm", version = "0.0.43" },
 ]
 
 [stack]
