@@ -73,6 +73,7 @@ spec:
     - "-layers=/layers"
     - "-helpers=${USE_CRED_HELPERS}"
     - "-group=/layers/group.toml"
+    - "-analyzed=/layers/analyzed.toml"
     - "${IMAGE}"
     imagePullPolicy: Always
     volumeMounts:
@@ -100,6 +101,7 @@ spec:
     - "-helpers=${USE_CRED_HELPERS}"
     - "-app=/workspace"
     - "-group=/layers/group.toml"
+    - "-analyzed=/layers/analyzed.toml"
     - "${IMAGE}"
     imagePullPolicy: Always
     volumeMounts:
